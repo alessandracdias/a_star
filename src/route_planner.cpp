@@ -75,8 +75,6 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
     // Create path_found vector
     distance = 0.0f;
     std::vector<RouteModel::Node> path_found;
-
-    // TODO: Implement your solution here
     path_found.push_back(*current_node);
     while(current_node != this->start_node){
         path_found.push_back(*current_node->parent);
@@ -102,10 +100,11 @@ void RoutePlanner::AStarSearch() {
     RouteModel::Node *current_node = nullptr;
     
     current_node = this->start_node;
+    //Setting the start node as visited
     current_node->visited = true;
+    // Add the start node neighbors
     AddNeighbors(current_node);
-  
-    // TODO: Implement your solution here.
+    //The A*
     while(this->open_list.size() > 0) {
         if (this->end_node == current_node) {
             m_Model.path = this->ConstructFinalPath(current_node);
@@ -116,5 +115,4 @@ void RoutePlanner::AStarSearch() {
     }
     std::cout << "No path found!  \n"; 
   
-
 }
